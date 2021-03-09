@@ -5,10 +5,12 @@
  */
 package projeto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Joao
  */
-public class Viagem {
+public class Viagem implements Serializable{
     
 }

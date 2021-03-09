@@ -5,10 +5,11 @@
  */
 package projeto;
 
+import java.io.Serializable;
 /**
  *
  * @author Joao
  */
-public class Cliente {
+public class Cliente implements Serializable{
     
 }

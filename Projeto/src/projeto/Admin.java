@@ -5,10 +5,11 @@
  */
 package projeto;
 
+import java.io.Serializable;
 /**
  *
  * @author Joao
  */
-public class Admin {
+public class Admin implements Serializable{
     
 }
