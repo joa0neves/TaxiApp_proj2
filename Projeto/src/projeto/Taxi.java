@@ -11,5 +11,8 @@ import java.io.Serializable;
  * @author Joao
  */
 public class Taxi implements Serializable{
-    
+    private String modelo;
+    private String marca;
+    private String alvara;
+    private String matricula;
 }

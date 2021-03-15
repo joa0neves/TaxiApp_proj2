@@ -6,10 +6,16 @@
 package projeto;
 
 import java.io.Serializable;
+import java.util.*;
 /**
  *
  * @author Joao
  */
 public class Ferias implements Serializable{
-
+    private Date inicio;
+    private Date fim;
+    private int adminID;
+    private int taxistaID;
+    private int pedidoID;
+    private String estado;
 }
