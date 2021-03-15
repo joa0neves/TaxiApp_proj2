@@ -11,5 +11,8 @@ import java.io.Serializable;
  * @author Joao
  */
 public class Admin implements Serializable{
+    private int adminID;
+    private String username;
+    private String password;
     
 }

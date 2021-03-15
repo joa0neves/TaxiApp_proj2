@@ -6,10 +6,15 @@
 package projeto;
 
 import java.io.Serializable;
+import java.util.*;
 /**
  *
  * @author Joao
  */
 public class Reserva implements Serializable{
-    
+    private Date Datapartida;
+    private int clienteID;
+    private int viagemID;
+    private String destino;
+    private String partida;
 }
