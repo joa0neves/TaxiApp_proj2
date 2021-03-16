@@ -17,4 +17,51 @@ public class Reserva implements Serializable{
     private int viagemID;
     private String destino;
     private String partida;
+
+    public Reserva() {
+    }
+    
+    
+
+    public Date getDatapartida() {
+        return Datapartida;
+    }
+
+    public void setDatapartida(Date Datapartida) {
+        this.Datapartida = Datapartida;
+    }
+
+    public int getClienteID() {
+        return clienteID;
+    }
+
+    public void setClienteID(int clienteID) {
+        this.clienteID = clienteID;
+    }
+
+    public int getViagemID() {
+        return viagemID;
+    }
+
+    public void setViagemID(int viagemID) {
+        this.viagemID = viagemID;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+
+    public String getPartida() {
+        return partida;
+    }
+
+    public void setPartida(String partida) {
+        this.partida = partida;
+    }
+    
+    
 }
