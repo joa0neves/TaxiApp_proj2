@@ -19,4 +19,43 @@ public class Taxi implements Serializable{
     private String marca;
     private String alvara;
     private String matricula;
+
+    public Taxi() {
+    }
+    
+    
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getAlvara() {
+        return alvara;
+    }
+
+    public void setAlvara(String alvara) {
+        this.alvara = alvara;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
+    
 }
