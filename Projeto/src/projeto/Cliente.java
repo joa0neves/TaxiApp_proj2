@@ -7,6 +7,11 @@ package projeto;
 
 import java.io.Serializable;
 import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 
 /**
  *
@@ -20,6 +25,59 @@ public class Cliente implements Serializable{
     private String email;
     private float NIF;
     private Date data_nascimento;
+
+    public Cliente() {
+    }
+    
+    
+
+    public int getCliente_id() {
+        return cliente_id;
+    }
+
+    public void setCliente_id(int cliente_id) {
+        this.cliente_id = cliente_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public float getNIF() {
+        return NIF;
+    }
+
+    public void setNIF(float NIF) {
+        this.NIF = NIF;
+    }
+
+    public Date getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
 
     
     
