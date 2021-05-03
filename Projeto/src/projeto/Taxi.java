@@ -6,24 +6,12 @@
 package projeto;
 
 import java.io.Serializable;
-/*import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-/**
- *
- * @author Joao
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Taxi implements Serializable{
     private String modelo;
     private String marca;
@@ -32,9 +20,22 @@ public class Taxi implements Serializable{
 
     public Taxi() {
     }
-    
-    
 
+    public Taxi(Connection con,String modelo, String marca, String alvara, String matricula) {
+        String sql="insert into taxi (MODELO,MARCA,ALVARÁ,MATRICULA) values (?,?,?,?)";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,modelo);
+            stmt.setString(2,marca);
+            stmt.setString(3,alvara);
+            stmt.setString(4, matricula);
+            stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     public String getModelo() {
         return modelo;
     }

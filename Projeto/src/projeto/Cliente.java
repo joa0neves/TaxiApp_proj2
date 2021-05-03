@@ -6,27 +6,13 @@
 package projeto;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
-/*import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-/**
- *
- * @author Joao
- */
 public class Cliente implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -36,11 +22,28 @@ public class Cliente implements Serializable{
     private String username;
     private String password;
     private String email;
-    private float NIF;
+    private int NIF;
     private Date data_nascimento;
 
     public Cliente() {
     }
+
+    public Cliente(Connection con,int cliente_id, String username, String password, String email, int NIF, Date data_nascimento) {
+        String sql="insert into cliente (USERNAME,PASSWORD,EMAIL,NIF,DATA_NASCIMENTO) values(?,?,?,?,?);";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,username);
+            stmt.setString(2,password);
+            stmt.setString(3,email);
+            stmt.setInt(4, NIF);
+            stmt.setDate(5,new java.sql.Date(data_nascimento.getTime()));
+            stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     
     
 
@@ -80,7 +83,7 @@ public class Cliente implements Serializable{
         return NIF;
     }
 
-    public void setNIF(float NIF) {
+    public void setNIF(int NIF) {
         this.NIF = NIF;
     }
 

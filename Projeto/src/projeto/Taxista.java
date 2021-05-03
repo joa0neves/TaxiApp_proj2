@@ -6,7 +6,14 @@
 package projeto;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,6 +46,40 @@ public class Taxista implements Serializable{
 
     public Taxista() {
     }
+
+    public Taxista(Connection con,Date datanascimento, int telefone, int numeroemergencia, int NIF, char sexo, String morada, String certificado, String password, String username, String email) {
+        /*this.datanascimento = datanascimento;
+        this.telefone = telefone;
+        this.numeroemergencia = numeroemergencia;
+        this.NIF = NIF;
+        this.sexo = sexo;
+        this.morada = morada;
+        this.certificado = certificado;
+        this.password = password;
+        this.username = username;
+        this.email = email;*/
+        String sql="insert into taxista (USERNAME,PASSWORD,EMAIL,DATA_NASCIMENTO,NUMERO_EMERGENCIA,TELEFONE,NIF,SEXO,MORADA,CERTIFICADO) values (?,?,?,?,?,?,?,?,?,?);";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,username);
+            stmt.setString(2, password);
+            stmt.setString(3, email);
+            stmt.setDate(4, new java.sql.Date(datanascimento.getTime()));
+            stmt.setInt(5, numeroemergencia);
+            stmt.setInt(6,telefone);
+            stmt.setInt(7,NIF);
+            
+            stmt.setString(9,morada);
+            stmt.setString(10,certificado);
+            stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     
     
 
