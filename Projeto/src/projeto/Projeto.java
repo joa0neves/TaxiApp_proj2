@@ -32,7 +32,7 @@ public class Projeto {
 
             ResultSet rs = stmt.executeQuery("select * from admin");
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+                System.out.println(rs.getString("USERNAME"));
             }
   
             con.close();

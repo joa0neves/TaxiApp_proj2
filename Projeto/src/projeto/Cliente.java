@@ -7,7 +7,7 @@ package projeto;
 
 import java.io.Serializable;
 import java.util.*;
-import javax.persistence.Basic;
+/*import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,33 +27,16 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Joao
  */
-@Entity
-@Table(name = "CLIENTE")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findAllByUsername", query = "SELECT c FROM Cliente c WHERE c.username LIKE :username"),
-    @NamedQuery(name = "Cliente.findByIdcliente", query = "SELECT c FROM Cliente c WHERE c.idcliente = :idcliente"),
-    @NamedQuery(name = "Cliente.findByUsername", query = "SELECT c FROM Cliente c WHERE c.Username = :Username"),
-    @NamedQuery(name = "Cliente.findByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email"),
-    @NamedQuery(name = "Cliente.findByNIF", query = "SELECT c FROM Cliente c WHERE c.NIF = :NIF")})
 public class Cliente implements Serializable{
     
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)    
-    @Column(name = "ID")
+    
+    
     private int cliente_id;
-    @Column(name = "USERNAME")
     private String username;
-    @Column(name = "PASSWORD")
     private String password;
-    @Column(name = "EMAIL")
     private String email;
-    @Column(name = "NIF")
     private float NIF;
-    @Column(name = "DATA_NASCIMENTO")
     private Date data_nascimento;
 
     public Cliente() {
