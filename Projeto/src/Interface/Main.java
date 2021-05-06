@@ -7,9 +7,17 @@ package Interface;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.accessibility.AccessibleContext;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import projeto.Cliente;
 
 /**
  *
@@ -27,9 +35,22 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         this.painelVisivel = this.jPanel1;
         this.setContentPane(this.painelVisivel);
+        this.setLocationRelativeTo(null);
         //stack = new Stack () ;
 
     }
+
+    public JPanel getPainelVisivel() {
+        return painelVisivel;
+    }
+
+    public void setPainelVisivel(JPanel painelVisivel) {
+        this.painelVisivel = painelVisivel;
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +67,7 @@ public class Main extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,14 +75,23 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        jTextField1.setText("jTextField1");
-
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Login");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Registar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
 
@@ -74,16 +105,18 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jPasswordField1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(85, 85, 85))
+                            .addComponent(jPasswordField1))))
                 .addGap(22, 22, 22))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(183, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(178, 178, 178))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +129,11 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
-                .addComponent(jButton1)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,11 +151,53 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        MenuTaxista pTaxista = new MenuTaxista ();
-        Main.getFrame().AvancarParaPainel(pTaxista,this.jPanel1);
-        Main.getFrame().setSize(418, 300);
-        Main.getFrame().setLocationRelativeTo(null);
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            Connection con = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:xe", "projeto_taxi", "12346579");
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from cliente where USERNAME='"+jTextField1.getText()+"';");
+            if(rs.next()){
+                if(jPasswordField1.equals(rs.getString("PASSWORD"))){
+                    Cliente user=new Cliente(rs.getInt("CLIENTE_ID"),rs.getString("USERNAME"),rs.getString("EMAIL"),rs.getInt("NIF"),new Date(rs.getDate("DATA_NASCIMENTO").getTime()));
+                    MenuCliente pCliente = new MenuCliente (frame,user);
+                    AvancarParaPainel(pCliente,this.jPanel1);
+                    //setSize(418, 300);
+                    setLocationRelativeTo(null);
+                }
+            }else{
+                stmt = con.createStatement();
+                rs = stmt.executeQuery("select * from taxista where USERNAME='"+jTextField1.getText()+"';");
+                if(rs.next()){
+                    if(jPasswordField1.equals(rs.getString("PASSWORD"))){
+                        
+                    }
+                }
+            }
+            
+  
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+       
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        Registar pRegistar = new Registar(this);
+        AvancarParaPainel(pRegistar,this.jPanel1);
+        //setSize(418, 300);
+        setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     
     /**
@@ -178,6 +255,12 @@ public class Main extends javax.swing.JFrame {
         this.setContentPane(this.painelVisivel);
         this.painelVisivel.setVisible(true);
     }
+    
+    public void trocaPanel(JPanel painel){
+        this.removeAll();
+        this.setContentPane(painel);
+        frame.revalidate();
+    }
 
     public static Main getFrame () {
         return frame ;
@@ -188,6 +271,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

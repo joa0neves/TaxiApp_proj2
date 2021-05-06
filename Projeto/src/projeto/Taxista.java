@@ -40,7 +40,6 @@ public class Taxista implements Serializable{
     private char sexo;
     private String morada;
     private String certificado;
-    private String password;
     private String username;
     private String email;
 
@@ -137,14 +136,6 @@ public class Taxista implements Serializable{
 
     public void setCertificado(String certificado) {
         this.certificado = certificado;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getUsername() {

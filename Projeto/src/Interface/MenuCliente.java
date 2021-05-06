@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import projeto.Cliente;
+
 /**
  *
  * @author Joao
@@ -14,8 +16,12 @@ public class MenuCliente extends javax.swing.JPanel {
     /**
      * Creates new form MenuCliente
      */
-    public MenuCliente() {
+    
+    Main frame;
+    
+    public MenuCliente(Main frame,Cliente cliente) {
         initComponents();
+        this.frame=frame;
     }
 
     /**
@@ -34,10 +40,25 @@ public class MenuCliente extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
 
         jButton1.setText("Fazer Reserva");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Ver Reserva");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Pedir Taxi");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setText("Sair");
 
@@ -78,6 +99,24 @@ public class MenuCliente extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        FazerReserva newPanel = new FazerReserva();
+        Main.getFrame().trocaPanel(newPanel);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        VerReservas newPanel = new VerReservas();
+        Main.getFrame().trocaPanel(newPanel);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        PedirTaxi newPanel = new PedirTaxi();
+        Main.getFrame().trocaPanel(newPanel);
+    }//GEN-LAST:event_jButton3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

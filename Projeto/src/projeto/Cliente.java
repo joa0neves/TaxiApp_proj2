@@ -20,13 +20,22 @@ public class Cliente implements Serializable{
     
     private int cliente_id;
     private String username;
-    private String password;
     private String email;
     private int NIF;
     private Date data_nascimento;
 
     public Cliente() {
     }
+
+    public Cliente(int cliente_id, String username, String email, int NIF, Date data_nascimento) {
+        this.cliente_id = cliente_id;
+        this.username = username;
+        this.email = email;
+        this.NIF = NIF;
+        this.data_nascimento = data_nascimento;
+    }
+    
+    
 
     public Cliente(Connection con,int cliente_id, String username, String password, String email, int NIF, Date data_nascimento) {
         String sql="insert into cliente (USERNAME,PASSWORD,EMAIL,NIF,DATA_NASCIMENTO) values(?,?,?,?,?);";
@@ -61,14 +70,6 @@ public class Cliente implements Serializable{
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {

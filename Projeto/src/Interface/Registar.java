@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Joao
@@ -14,9 +17,14 @@ public class Registar extends javax.swing.JPanel {
     /**
      * Creates new form Registar
      */
-    public Registar() {
+    Main frame;
+    
+    public Registar(Main frame) {
         initComponents();
+        this.frame=frame;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +57,11 @@ public class Registar extends javax.swing.JPanel {
         jButton1.setText("Criar Conta");
 
         jButton2.setText("Voltar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,6 +112,12 @@ public class Registar extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        frame.Retroceder();
+        
+    }//GEN-LAST:event_jButton2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
