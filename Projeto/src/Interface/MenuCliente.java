@@ -17,11 +17,10 @@ public class MenuCliente extends javax.swing.JPanel {
      * Creates new form MenuCliente
      */
     
-    Main frame;
     
-    public MenuCliente(Main frame,Cliente cliente) {
+    
+    public MenuCliente(Cliente cliente) {
         initComponents();
-        this.frame=frame;
     }
 
     /**
@@ -103,19 +102,19 @@ public class MenuCliente extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         FazerReserva newPanel = new FazerReserva();
-        Main.getFrame().trocaPanel(newPanel);
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         VerReservas newPanel = new VerReservas();
-        Main.getFrame().trocaPanel(newPanel);
+        
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         PedirTaxi newPanel = new PedirTaxi();
-        Main.getFrame().trocaPanel(newPanel);
+        
     }//GEN-LAST:event_jButton3MouseClicked
 
 
