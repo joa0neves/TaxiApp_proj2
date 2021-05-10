@@ -7,7 +7,7 @@ package projeto;
 
 import java.io.Serializable;
 import java.util.*;
-import javax.persistence.Basic;
+/*import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

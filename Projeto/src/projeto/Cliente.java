@@ -6,58 +6,53 @@
 package projeto;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-/**
- *
- * @author Joao
- */
-@Entity
-@Table(name = "CLIENTE")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findAllByUsername", query = "SELECT c FROM Cliente c WHERE c.username LIKE :username"),
-    @NamedQuery(name = "Cliente.findByIdcliente", query = "SELECT c FROM Cliente c WHERE c.idcliente = :idcliente"),
-    @NamedQuery(name = "Cliente.findByUsername", query = "SELECT c FROM Cliente c WHERE c.Username = :Username"),
-    @NamedQuery(name = "Cliente.findByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email"),
-    @NamedQuery(name = "Cliente.findByNIF", query = "SELECT c FROM Cliente c WHERE c.NIF = :NIF")})
 public class Cliente implements Serializable{
     
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)    
-    @Column(name = "ID")
+    
+    
     private int cliente_id;
-    @Column(name = "USERNAME")
     private String username;
-    @Column(name = "PASSWORD")
-    private String password;
-    @Column(name = "EMAIL")
     private String email;
-    @Column(name = "NIF")
-    private float NIF;
-    @Column(name = "DATA_NASCIMENTO")
+    private int NIF;
     private Date data_nascimento;
 
     public Cliente() {
     }
+
+    public Cliente(int cliente_id, String username, String email, int NIF, Date data_nascimento) {
+        this.cliente_id = cliente_id;
+        this.username = username;
+        this.email = email;
+        this.NIF = NIF;
+        this.data_nascimento = data_nascimento;
+    }
+    
+    
+
+    public Cliente(Connection con,int cliente_id, String username, String password, String email, int NIF, Date data_nascimento) {
+        String sql="insert into cliente (USERNAME,PASSWORD,EMAIL,NIF,DATA_NASCIMENTO) values(?,?,?,?,?);";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,username);
+            stmt.setString(2,password);
+            stmt.setString(3,email);
+            stmt.setInt(4, NIF);
+            stmt.setDate(5,new java.sql.Date(data_nascimento.getTime()));
+            stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     
     
 
@@ -77,14 +72,6 @@ public class Cliente implements Serializable{
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -97,7 +84,7 @@ public class Cliente implements Serializable{
         return NIF;
     }
 
-    public void setNIF(float NIF) {
+    public void setNIF(int NIF) {
         this.NIF = NIF;
     }
 
