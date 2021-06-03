@@ -7,8 +7,11 @@ package BLL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import projeto.Taxista;
@@ -71,5 +74,32 @@ public class TaxistaBLL {
             Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public List<Taxista> readAll(Connection con){
+        List<Taxista> lista = new ArrayList<>();
+        String sql = "select * from TAXISTA";
+        Taxista temp;
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                temp=new Taxista();
+                temp.setTaxistaID(rs.getInt("TAXISTA_ID"));
+                temp.setUsername(rs.getString("USERNAME"));
+                temp.setEmail(rs.getString("EMAIL"));
+                temp.setNIF(rs.getInt("NIF"));
+                temp.setDatanascimento(new Date(rs.getTime("DATA_NASCIMENTO").getTime()));
+                temp.setNumeroemergencia(rs.getInt("NUMERO_EMERGENCIA"));
+                temp.setSexo(rs.getString("SEXO"));
+                temp.setMorada(rs.getString("MORADA"));
+                temp.setCertificado(rs.getString("CERTIFICADO"));
+                temp.setTelefone(rs.getInt("TELEFONE"));
+                lista.add(temp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 }
