@@ -42,21 +42,13 @@ public class Taxista implements Serializable{
     private String certificado;
     private String username;
     private String email;
+    private int taxistaID;
 
     public Taxista() {
     }
+    
 
-    public Taxista(Connection con,Date datanascimento, int telefone, int numeroemergencia, int NIF, char sexo, String morada, String certificado, String password, String username, String email) {
-        /*this.datanascimento = datanascimento;
-        this.telefone = telefone;
-        this.numeroemergencia = numeroemergencia;
-        this.NIF = NIF;
-        this.sexo = sexo;
-        this.morada = morada;
-        this.certificado = certificado;
-        this.password = password;
-        this.username = username;
-        this.email = email;*/
+    public void create(Connection con,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
         String sql="insert into taxista (USERNAME,PASSWORD,EMAIL,DATA_NASCIMENTO,NUMERO_EMERGENCIA,TELEFONE,NIF,SEXO,MORADA,CERTIFICADO) values (?,?,?,?,?,?,?,?,?,?);";
         
         try {
@@ -68,18 +60,56 @@ public class Taxista implements Serializable{
             stmt.setInt(5, numeroemergencia);
             stmt.setInt(6,telefone);
             stmt.setInt(7,NIF);
-            
+            stmt.setString(8, sexo);
             stmt.setString(9,morada);
             stmt.setString(10,certificado);
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    public void delete(Connection con,int taxistaID){
+        String sql="delete from TAXISTA where TAXISTA_ID=?";
+        try{
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, taxistaID);
+            stmt.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
-    
-    
+    public void update(Connection con,int taxistaID,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
+        String sql="update taxista set USERNAME=?,PASSWORD=?,EMAIL=?,DATA_NASCIMENTO=?,NUMERO_EMERGENCIA=?,TELEFONE=?,NIF=?,SEXO=?,MORADA=?,CERTIFICADO=? where TAXISTA_ID=?;";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,username);
+            stmt.setString(2, password);
+            stmt.setString(3, email);
+            stmt.setDate(4, new java.sql.Date(datanascimento.getTime()));
+            stmt.setInt(5, numeroemergencia);
+            stmt.setInt(6,telefone);
+            stmt.setInt(7,NIF);
+            stmt.setString(8, sexo);
+            stmt.setString(9,morada);
+            stmt.setString(10,certificado);
+            stmt.setInt(11, taxistaID);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    public int getTaxistaID() {
+        return taxistaID;
+    }
+
+    public void setTaxistaID(int taxistaID) {
+        this.taxistaID = taxistaID;
+    }
     
 
     public Date getDatanascimento() {

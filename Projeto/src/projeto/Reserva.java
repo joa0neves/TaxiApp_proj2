@@ -6,7 +6,12 @@
 package projeto;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,6 +40,44 @@ public class Reserva implements Serializable{
     public Reserva() {
     }
     
+    public void create(Connection con,Date Datapartida,int clienteID,String destino,String partida){
+        String sql="insert into RESERVA (DATA_PARTIDA,CLIENTE_ID,DESTINO,PARTIDA) values(?,?,?,?);";
+        try{
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setDate(1, new java.sql.Date(Datapartida.getTime()));
+            stmt.setInt(2,clienteID);
+            stmt.setString(3, destino);
+            stmt.setString(4,partida);
+            stmt.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void delete(Connection con,int viagemID){
+        String sql="delete from RESERVA where VIAGEM_ID=?;";
+        try{
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, viagemID);
+            stmt.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void update(Connection con,int viagemID,Date Datapartida,int clienteID,String destino,String partida){
+        String sql="update RESERVA DATA_PARTIDA=?,CLIENTE_ID=?,DESTINO=?,PARTIDA=? where VIAGEM_ID=?;";
+        try{
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setDate(1, new java.sql.Date(Datapartida.getTime()));
+            stmt.setInt(2,clienteID);
+            stmt.setString(3, destino);
+            stmt.setString(4,partida);
+            stmt.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 
     public Date getDatapartida() {
