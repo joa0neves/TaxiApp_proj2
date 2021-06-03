@@ -20,6 +20,7 @@ public class Cliente implements Serializable{
     
     private int cliente_id;
     private String username;
+    private String password;
     private String email;
     private int NIF;
     private Date data_nascimento;
@@ -34,56 +35,17 @@ public class Cliente implements Serializable{
         this.NIF = NIF;
         this.data_nascimento = data_nascimento;
     }
-    
-    
-
-    
-    public void create(Connection con,int cliente_id, String username, String password, String email, int NIF, Date data_nascimento) {
-        String sql="insert into cliente (USERNAME,PASSWORD,EMAIL,NIF,DATA_NASCIMENTO) values(?,?,?,?,?);";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1,username);
-            stmt.setString(2,password);
-            stmt.setString(3,email);
-            stmt.setInt(4, NIF);
-            stmt.setDate(5,new java.sql.Date(data_nascimento.getTime()));
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void delete(Connection con,int cliente_id){
-        String sql="delete from CLIENTE where CLIENTEID=?;";
-        try{
-            PreparedStatement stmt=con.prepareStatement(sql);
-            stmt.setInt(1,cliente_id);
-            stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    
-    public void update(Connection con,int cliente_id, String username, String password, String email, int NIF, Date data_nascimento){
-        String sql="update cliente set USERNAME=? , PASSWORD=? , EMAIL=?, NIF=?, DATA_NASCIMENTO=? where CLIENTEID=? );";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1,username);
-            stmt.setString(2,password);
-            stmt.setString(3,email);
-            stmt.setInt(4, NIF);
-            stmt.setDate(5,new java.sql.Date(data_nascimento.getTime()));
-            stmt.setInt(6, cliente_id);
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
 
     public int getCliente_id() {
         return cliente_id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setCliente_id(int cliente_id) {
@@ -106,7 +68,7 @@ public class Cliente implements Serializable{
         this.email = email;
     }
 
-    public float getNIF() {
+    public int getNIF() {
         return NIF;
     }
 
