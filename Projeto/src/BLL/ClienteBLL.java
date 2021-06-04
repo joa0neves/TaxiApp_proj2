@@ -36,7 +36,7 @@ public class ClienteBLL {
     }
     
     public void delete(Connection con,int cliente_id){
-        String sql="delete from CLIENTE where CLIENTEID=?;";
+        String sql="delete from CLIENTE where CLIENTE_ID=?;";
         try{
             PreparedStatement stmt=con.prepareStatement(sql);
             stmt.setInt(1,cliente_id);
@@ -48,7 +48,7 @@ public class ClienteBLL {
     }
     
     public void update(Connection con,Cliente cliente){
-        String sql="update cliente set USERNAME=? , PASSWORD=? , EMAIL=?, NIF=?, DATA_NASCIMENTO=? where CLIENTEID=? );";
+        String sql="update cliente set USERNAME=? , PASSWORD=? , EMAIL=?, NIF=?, DATA_NASCIMENTO=? where CLIENTEID=?;";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,cliente.getUsername());
