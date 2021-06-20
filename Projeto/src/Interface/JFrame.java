@@ -32,6 +32,7 @@ public class JFrame extends javax.swing.JFrame {
     public JFrame() {
         initComponents();
         Login newPanel= new Login();
+        
         this.painelVisivel = newPanel;
         this.setContentPane(this.painelVisivel);
     }
