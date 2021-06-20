@@ -6,6 +6,7 @@
 package BLL;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,7 +77,7 @@ public class TaxistaBLL {
         
     }
     
-    public List<Taxista> readAll(Connection con){
+    public static List<Taxista> readAll(Connection con){
         List<Taxista> lista = new ArrayList<>();
         String sql = "select * from TAXISTA";
         Taxista temp;
@@ -101,5 +102,43 @@ public class TaxistaBLL {
             Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
+    }
+    
+    
+    public static Taxista read(String username){
+        String sql = "select * from TAXISTA";
+        Taxista temp;
+        temp=new Taxista();
+        try {
+            
+              
+          
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+  
+
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                
+                temp.setTaxistaID(rs.getInt("TAXISTA_ID"));
+                temp.setUsername(rs.getString("USERNAME"));
+                temp.setEmail(rs.getString("EMAIL"));
+                temp.setNIF(rs.getInt("NIF"));
+                temp.setDatanascimento(new Date(rs.getTime("DATA_NASCIMENTO").getTime()));
+                temp.setNumeroemergencia(rs.getInt("NUMERO_EMERGENCIA"));
+                temp.setSexo(rs.getString("SEXO"));
+                temp.setMorada(rs.getString("MORADA"));
+                temp.setCertificado(rs.getString("CERTIFICADO"));
+                temp.setTelefone(rs.getInt("TELEFONE"));
+                
+                
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return temp;
     }
 }

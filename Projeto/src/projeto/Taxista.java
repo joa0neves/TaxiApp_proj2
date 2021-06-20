@@ -43,6 +43,7 @@ public class Taxista implements Serializable{
     private String username;
     private String email;
     private int taxistaID;
+    private String password;
 
     public Taxista() {
     }
@@ -71,6 +72,16 @@ public class Taxista implements Serializable{
     public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 
     public int getNumeroemergencia() {
         return numeroemergencia;

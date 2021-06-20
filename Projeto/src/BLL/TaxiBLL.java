@@ -18,7 +18,7 @@ import projeto.Taxi;
  */
 public class TaxiBLL {
     public void create(Connection con,Taxi taxi){
-        String sql="insert into TAXI (ALVARÁ,MODELO,MARCA,MATRICULA) values(?,?,?,?);";
+        String sql="insert into TAXI (ALVARA,MODELO,MARCA,MATRICULA) values(?,?,?,?);";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, taxi.getAlvara());
@@ -43,7 +43,7 @@ public class TaxiBLL {
     }
     
     public void update(Connection con, Taxi taxi){
-        String sql="update TAXI set ALVARÁ=?,MODELO=?,MARCA=?,MATRICULA? where TAXI_ID=?;";
+        String sql="update TAXI set ALVARA=?,MODELO=?,MARCA=?,MATRICULA? where TAXI_ID=?;";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, taxi.getAlvara());

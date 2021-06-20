@@ -6,6 +6,7 @@
 package BLL;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,10 +64,18 @@ public class ClienteBLL {
         }
     }
     
-    public Cliente read(Connection con,String username){
+    public static Cliente read(String username){
         String sql="select * from CLIENTE where USERNAME=?;";
         Cliente cliente=new Cliente();
         try{
+            
+              
+          
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+  
+
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
+
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
@@ -77,8 +86,9 @@ public class ClienteBLL {
                 cliente.setData_nascimento(new Date(rs.getTime("DATA_NASCIMENTO").getTime()));
                 cliente.setNIF(rs.getInt("NIF"));
             }
-        }catch(SQLException ex){
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
         
         return cliente;
