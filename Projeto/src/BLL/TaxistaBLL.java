@@ -22,10 +22,12 @@ import projeto.Taxista;
  * @author Joao
  */
 public class TaxistaBLL {
-    public void create(Connection con,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
+    public void create(Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
         String sql="insert into taxista (USERNAME,PASSWORD,EMAIL,DATA_NASCIMENTO,NUMERO_EMERGENCIA,TELEFONE,NIF,SEXO,MORADA,CERTIFICADO) values (?,?,?,?,?,?,?,?,?,?);";
         
         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver"); 
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,username);
             stmt.setString(2, password);
@@ -38,26 +40,38 @@ public class TaxistaBLL {
             stmt.setString(9,morada);
             stmt.setString(10,certificado);
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery(); 
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }
     
-    public void delete(Connection con,int taxistaID){
+    public void delete(int taxistaID){
         String sql="delete from TAXISTA where TAXISTA_ID=?";
         try{
+            Class.forName("oracle.jdbc.driver.OracleDriver"); 
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, taxistaID);
             stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }
     
-    public void update(Connection con,int taxistaID,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
+    public void update(int taxistaID,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
         String sql="update taxista set USERNAME=?,PASSWORD=?,EMAIL=?,DATA_NASCIMENTO=?,NUMERO_EMERGENCIA=?,TELEFONE=?,NIF=?,SEXO=?,MORADA=?,CERTIFICADO=? where TAXISTA_ID=?;";
         
         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver"); 
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,username);
             stmt.setString(2, password);
@@ -71,17 +85,23 @@ public class TaxistaBLL {
             stmt.setString(10,certificado);
             stmt.setInt(11, taxistaID);
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+             con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
         
     }
     
-    public static List<Taxista> readAll(Connection con){
+    public static List<Taxista> readAll(){
         List<Taxista> lista = new ArrayList<>();
         String sql = "select * from TAXISTA";
         Taxista temp;
         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver"); 
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
@@ -98,9 +118,11 @@ public class TaxistaBLL {
                 temp.setTelefone(rs.getInt("TELEFONE"));
                 lista.add(temp);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
+        
         return lista;
     }
     
@@ -111,11 +133,7 @@ public class TaxistaBLL {
         temp=new Taxista();
         try {
             
-              
-          
-            Class.forName("oracle.jdbc.driver.OracleDriver");  
-  
-
+            Class.forName("oracle.jdbc.driver.OracleDriver"); 
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
 
             PreparedStatement stmt = con.prepareStatement(sql);

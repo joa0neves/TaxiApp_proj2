@@ -6,6 +6,7 @@
 package BLL;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
@@ -19,9 +20,11 @@ import projeto.Viagem;
  */
 public class ViagemBLL {
     
-    public void create(Connection con,int taxiID,int taxistaID,int clienteID,Date inicio,Date fim,float custo,double distancia,String estado,String formapagamento,String localpartida, String localchegado){
+    public void create(int taxiID,int taxistaID,int clienteID,Date inicio,Date fim,float custo,double distancia,String estado,String formapagamento,String localpartida, String localchegado){
         String sql="insert into viagem (TAXI_ID,TAXISTA_ID,CLIENTE_ID,INICIO,FIM,CUSTO,DISTANCIA,ESTADO,FORMA_PAGAMENTO,PARTIDA,CHEGADA) values(?,?,?,?,?,?,?,?,?,?,?)";
         try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, taxiID);
             stmt.setInt(2, taxistaID);
@@ -35,25 +38,37 @@ public class ViagemBLL {
             stmt.setString(10,localpartida);
             stmt.setString(11,localchegado);
             stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Viagem.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }
     
-    public void delete(Connection con,int viagemID){
+    public void delete(int viagemID){
         String sql="delete from VIAGEM where VIAGEM_ID=?";
         try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, viagemID);
             stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Viagem.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }
     
-    public void update(Connection con,int viagemID,int taxiID,int taxistaID,int clienteID,Date inicio,Date fim,float custo,double distancia,String estado,String formapagamento,String localpartida, String localchegado){
+    public void update(int viagemID,int taxiID,int taxistaID,int clienteID,Date inicio,Date fim,float custo,double distancia,String estado,String formapagamento,String localpartida, String localchegado){
         String sql="update viagem set TAXI_ID=?,TAXISTA_ID=?,CLIENTE_ID=?,INICIO=?,FIM=?,CUSTO=?,DISTANCIA=?,ESTADO=?,FORMA_PAGAMENTO=?,PARTIDA=?,CHEGADA=? where VIAGEM_ID=?;";
         try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, taxiID);
             stmt.setInt(2, taxistaID);
@@ -68,8 +83,12 @@ public class ViagemBLL {
             stmt.setString(11,localchegado);
             stmt.setInt(12,viagemID);
             stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Viagem.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
         
     }

@@ -21,9 +21,12 @@ import projeto.Cliente;
  */
 public class ClienteBLL {
     
-    public void create(Connection con,Cliente cliente) {
+    public void create(Cliente cliente) {
         String sql="insert into cliente (USERNAME,PASSWORD,EMAIL,NIF,DATA_NASCIMENTO) values(?,?,?,?,?);";
         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
+            
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,cliente.getUsername());
             stmt.setString(2,cliente.getPassword());
@@ -31,26 +34,42 @@ public class ClienteBLL {
             stmt.setInt(4, cliente.getNIF());
             stmt.setDate(5,new java.sql.Date(cliente.getData_nascimento().getTime()));
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     
-    public void delete(Connection con,int cliente_id){
+    public void delete(int cliente_id){
         String sql="delete from CLIENTE where CLIENTE_ID=?;";
         try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
+            
             PreparedStatement stmt=con.prepareStatement(sql);
             stmt.setInt(1,cliente_id);
             stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            
+            con.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
         
     }
     
-    public void update(Connection con,Cliente cliente){
+    public void update(Cliente cliente){
         String sql="update cliente set USERNAME=? , PASSWORD=? , EMAIL=?, NIF=?, DATA_NASCIMENTO=? where CLIENTEID=?;";
         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
+            
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,cliente.getUsername());
             stmt.setString(2,cliente.getPassword());
@@ -59,8 +78,13 @@ public class ClienteBLL {
             stmt.setDate(5,new java.sql.Date(cliente.getData_nascimento().getTime()));
             stmt.setInt(6, cliente.getCliente_id());
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            
+             con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     
@@ -68,12 +92,7 @@ public class ClienteBLL {
         String sql="select * from CLIENTE where USERNAME=?;";
         Cliente cliente=new Cliente();
         try{
-            
-              
-          
             Class.forName("oracle.jdbc.driver.OracleDriver");  
-  
-
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -86,6 +105,10 @@ public class ClienteBLL {
                 cliente.setData_nascimento(new Date(rs.getTime("DATA_NASCIMENTO").getTime()));
                 cliente.setNIF(rs.getInt("NIF"));
             }
+            
+            stmt = con.prepareStatement("COMMIT;");
+            stmt.executeQuery();
+            
             con.close();
         }catch (Exception e) {
             System.out.println(e);
