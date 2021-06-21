@@ -5,11 +5,10 @@
  */
 package Interface;
 
-import javax.swing.JOptionPane;
 import BLL.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.Date;
+import java.util.List;
+import javax.swing.JTable;
 import projeto.*;
 
 /**
@@ -21,6 +20,7 @@ public class Login extends javax.swing.JPanel {
     Admin admin;
     Cliente cliente;
     Taxista taxista;
+    List<Taxista> taxistas;
     
     
     public Login() {
@@ -1243,6 +1243,11 @@ public class Login extends javax.swing.JPanel {
         jLabel27.setText("Local de Partida");
 
         jButton71.setText("Pedir Taxi");
+        jButton71.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton71MouseClicked(evt);
+            }
+        });
 
         jButton72.setText("Cancelar");
 
@@ -2113,6 +2118,17 @@ public class Login extends javax.swing.JPanel {
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
         MenuAdmin.setVisible(false);  
+        this.taxistas=TaxistaBLL.readAll();
+        String[] colunas={"ID","USERNAME","CERTIFICADO"};
+        String[][] data=new String[this.taxistas.size()][3];
+        System.out.println("taxistas");
+        for(int i=0;i<this.taxistas.size();i++){
+            System.out.println("taxistas");
+            data[i][0]=String.valueOf(this.taxistas.get(i).getTaxistaID());
+            data[i][1]=this.taxistas.get(i).getUsername();
+            data[i][2]=this.taxistas.get(i).getUsername();
+        }
+        jTable1=new JTable(data,colunas);
         VerTaxistas.setVisible(true);
     }//GEN-LAST:event_jButton13MouseClicked
 
@@ -2294,6 +2310,22 @@ public class Login extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_jButton75MouseClicked
+
+    private void jButton71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton71MouseClicked
+        
+        if(!jTextField25.getText().equals("") && !jTextField26.getText().equals("")){
+            String partida = jTextField25.getText();
+            String destino = jTextField26.getText();
+            Viagem viagem = new Viagem();
+            viagem.setLocalpartida(partida);
+            viagem.setLocalchegado(destino);
+            viagem.setClienteID(this.cliente.getCliente_id());
+            ViagemBLL.create(viagem);
+            PedirTaxi.setVisible(false);
+            resetText();
+            MenuCliente.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton71MouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
