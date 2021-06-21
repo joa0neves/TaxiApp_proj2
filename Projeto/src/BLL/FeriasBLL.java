@@ -20,7 +20,7 @@ import projeto.Ferias;
  */
 public class FeriasBLL {
     
-    public void create(Date inicio,Date fim, int adminID,int taxistaID, String estado){
+    public static void create(Date inicio,Date fim, int adminID,int taxistaID, String estado){
         String sql="insert into PEDIDO_FERIAS (ID_TAXISTA,DATA_INICIO,DATA_FIM,ESTADO) VALUES(?,?,?,?);";
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");  
@@ -41,7 +41,7 @@ public class FeriasBLL {
         }
     }
     
-    public void delete(int pedidoID){
+    public static void delete(int pedidoID){
         String sql="delete from PEDIDO_FERIAS where PEDIDO_ID=?;";
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");  
@@ -59,7 +59,7 @@ public class FeriasBLL {
         }
     }
     
-    public void update(int pedidoID,Date inicio,Date fim, int adminID,int taxistaID, String estado){
+    public static void update(int pedidoID,Date inicio,Date fim, int adminID,int taxistaID, String estado){
         String sql="update PEDIDO_FERIAS ID_TAXISTA=?,DATA_INICIO=?,DATA_FIM=?,ESTADO=?) where PEDIDO_ID=? ;";
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");  

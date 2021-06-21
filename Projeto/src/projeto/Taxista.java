@@ -37,7 +37,7 @@ public class Taxista implements Serializable{
     private int telefone;
     private int numeroemergencia;
     private int NIF;
-    private char sexo;
+    private String sexo;
     private String morada;
     private String certificado;
     private String username;
@@ -99,12 +99,12 @@ public class Taxista implements Serializable{
         this.NIF = NIF;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
     public void setSexo(String sexo) {
-        this.sexo = sexo.charAt(0);
+        this.sexo = sexo;
     }
 
     public String getMorada() {

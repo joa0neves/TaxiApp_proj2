@@ -21,24 +21,24 @@ import projeto.Taxista;
  *
  * @author Joao
  */
-public class TaxistaBLL {
-    public void create(Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
-        String sql="insert into taxista (USERNAME,PASSWORD,EMAIL,DATA_NASCIMENTO,NUMERO_EMERGENCIA,TELEFONE,NIF,SEXO,MORADA,CERTIFICADO) values (?,?,?,?,?,?,?,?,?,?);";
+public  class TaxistaBLL {
+    public static void create(Taxista taxista) {
+        String sql="insert into taxista (USERNAME,PASSWORD,EMAIL,DATA_NASCIMENTO,NUMERO_EMERGENCIA,TELEFONE,NIF,SEXO,MORADA,CERTIFICADO) values (?,?,?,?,?,?,?,?,?,?)";
         
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver"); 
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1,username);
-            stmt.setString(2, password);
-            stmt.setString(3, email);
-            stmt.setDate(4, new java.sql.Date(datanascimento.getTime()));
-            stmt.setInt(5, numeroemergencia);
-            stmt.setInt(6,telefone);
-            stmt.setInt(7,NIF);
-            stmt.setString(8, sexo);
-            stmt.setString(9,morada);
-            stmt.setString(10,certificado);
+            stmt.setString(1,taxista.getUsername());
+            stmt.setString(2, taxista.getPassword());
+            stmt.setString(3, taxista.getEmail());
+            stmt.setDate(4, new java.sql.Date(taxista.getDatanascimento().getTime()));
+            stmt.setInt(5, taxista.getNumeroemergencia());
+            stmt.setInt(6,taxista.getTelefone());
+            stmt.setInt(7,taxista.getNIF());
+            stmt.setString(8, taxista.getSexo());
+            stmt.setString(9,taxista.getMorada());
+            stmt.setString(10,taxista.getCertificado());
             stmt.executeUpdate();
             
             stmt = con.prepareStatement("COMMIT;");
@@ -49,7 +49,7 @@ public class TaxistaBLL {
         }
     }
     
-    public void delete(int taxistaID){
+    public static void delete(int taxistaID){
         String sql="delete from TAXISTA where TAXISTA_ID=?";
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver"); 
@@ -66,7 +66,7 @@ public class TaxistaBLL {
         }
     }
     
-    public void update(int taxistaID,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
+    public static void update(int taxistaID,Date datanascimento, int telefone, int numeroemergencia, int NIF, String sexo, String morada, String certificado, String password, String username, String email) {
         String sql="update taxista set USERNAME=?,PASSWORD=?,EMAIL=?,DATA_NASCIMENTO=?,NUMERO_EMERGENCIA=?,TELEFONE=?,NIF=?,SEXO=?,MORADA=?,CERTIFICADO=? where TAXISTA_ID=?;";
         
         try {
@@ -128,7 +128,7 @@ public class TaxistaBLL {
     
     
     public static Taxista read(String username){
-        String sql = "select * from TAXISTA";
+        String sql = "select * from TAXISTA where USERNAME=?";
         Taxista temp;
         temp=new Taxista();
         try {
@@ -137,11 +137,12 @@ public class TaxistaBLL {
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
 
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                
                 temp.setTaxistaID(rs.getInt("TAXISTA_ID"));
                 temp.setUsername(rs.getString("USERNAME"));
+                temp.setPassword(rs.getString("PASSWORD"));
                 temp.setEmail(rs.getString("EMAIL"));
                 temp.setNIF(rs.getInt("NIF"));
                 temp.setDatanascimento(new Date(rs.getTime("DATA_NASCIMENTO").getTime()));
@@ -150,7 +151,6 @@ public class TaxistaBLL {
                 temp.setMorada(rs.getString("MORADA"));
                 temp.setCertificado(rs.getString("CERTIFICADO"));
                 temp.setTelefone(rs.getInt("TELEFONE"));
-                
                 
             }
             con.close();

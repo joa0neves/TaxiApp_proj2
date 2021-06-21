@@ -24,12 +24,11 @@ public class AdminBLL {
     
     public static Admin read(String username){
         Admin admin = new Admin();
-        String sql = "select * from projeto_taxi.ADMIN where USERNAME=?";
+        String sql = "select * from ADMIN where USERNAME=?";
         try{  
             Class.forName("oracle.jdbc.driver.OracleDriver");  
 
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
-            
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, username);
@@ -45,8 +44,6 @@ public class AdminBLL {
         }catch (Exception e) {
             System.out.println(e);
         }
-        
-        System.out.println(admin.getAdminID());
         return admin;
     
 }

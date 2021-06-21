@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import BLL.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Date;
 import projeto.*;
 
 /**
@@ -16,11 +17,10 @@ import projeto.*;
  * @author Joao
  */
 public class Login extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Login
-     */
-    
+    String modo;
+    Admin admin;
+    Cliente cliente;
+    Taxista taxista;
     
     
     public Login() {
@@ -46,6 +46,60 @@ public class Login extends javax.swing.JPanel {
         EditarTaxi.setVisible(false);
         EditarTaxista.setVisible(false);
     }
+    
+    private void resetText(){
+        jTextField1.setText("");
+        jTextField10.setText("");
+        jTextField11.setText("");
+        jTextField12.setText("");
+        jTextField13.setText("");
+        jTextField14.setText("");
+        jTextField15.setText("");
+        jTextField16.setText("");
+        jTextField17.setText("");
+        jTextField18.setText("");
+        jTextField19.setText("");
+        jTextField2.setText("");
+        jTextField21.setText("");
+        jTextField23.setText("");
+        jTextField24.setText("");
+        jTextField25.setText("");
+        jTextField26.setText("");
+        jTextField28.setText("");
+        jTextField27.setText("");
+        jTextField29.setText("");
+        jTextField3.setText("");
+        jTextField30.setText("");
+        jTextField31.setText("");
+        jTextField32.setText("");
+        jTextField33.setText("");
+        jTextField34.setText("");
+        jTextField35.setText("");
+        jTextField36.setText("");
+        jTextField37.setText("");
+        jTextField4.setText("");
+        jTextField48.setText("");
+        jTextField49.setText("");
+        jTextField5.setText("");
+        jTextField50.setText("");
+        jTextField51.setText("");
+        jTextField52.setText("");
+        jTextField53.setText("");
+        jTextField54.setText("");
+        jTextField55.setText("");
+        jTextField56.setText("");
+        jTextField57.setText("");
+        jTextField58.setText("");
+        jTextField59.setText("");
+        jTextField6.setText("");
+        jTextField60.setText("");
+        jTextField61.setText("");
+        jTextField62.setText("");
+        jTextField63.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,8 +120,6 @@ public class Login extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         MenuCliente = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -145,6 +197,10 @@ public class Login extends javax.swing.JPanel {
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton61 = new javax.swing.JButton();
         jButton62 = new javax.swing.JButton();
+        jLabel70 = new javax.swing.JLabel();
+        jTextField21 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField16 = new javax.swing.JTextField();
         AvaliarPedidoFerias = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -194,11 +250,13 @@ public class Login extends javax.swing.JPanel {
         jTextField35 = new javax.swing.JTextField();
         jTextField36 = new javax.swing.JTextField();
         jTextField37 = new javax.swing.JTextField();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
         jButton75 = new javax.swing.JButton();
         jButton76 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField17 = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField18 = new javax.swing.JTextField();
+        jTextField19 = new javax.swing.JTextField();
         CriarReserva = new javax.swing.JPanel();
         jTextField48 = new javax.swing.JTextField();
         jTextField49 = new javax.swing.JTextField();
@@ -275,8 +333,6 @@ public class Login extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setText(" ");
-
         jLabel1.setText("Username");
 
         jLabel2.setText("Password");
@@ -285,25 +341,6 @@ public class Login extends javax.swing.JPanel {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
-            }
-        });
-
-        jButton8.setText("Admin");
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
-            }
-        });
-
-        jButton9.setText("Taxista");
-        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton9MouseClicked(evt);
-            }
-        });
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
             }
         });
 
@@ -321,40 +358,34 @@ public class Login extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(jTextField2)))
+                            .addComponent(jTextField2))
+                        .addContainerGap(79, Short.MAX_VALUE))
                     .addGroup(LoginLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton9)
-                    .addComponent(jButton8))
-                .addGap(60, 60, 60))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(40, 40, 40))))
         );
         LoginLayout.setVerticalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoginLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1))
+                    .addGroup(LoginLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8)
+                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
-                .addGap(12, 12, 12))
+                .addGap(70, 70, 70))
         );
 
         jButton4.setText("Sair");
@@ -487,7 +518,7 @@ public class Login extends javax.swing.JPanel {
                 .addComponent(jButton42)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton43)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jButton44)
                 .addContainerGap())
         );
@@ -537,15 +568,11 @@ public class Login extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton14))
                     .addGroup(MenuAdminLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(MenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(MenuAdminLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton10))
-                            .addGroup(MenuAdminLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(MenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton11)
-                                    .addComponent(jButton12))))
+                            .addComponent(jButton10)
+                            .addComponent(jButton11)
+                            .addComponent(jButton12))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(MenuAdminLayout.createSequentialGroup()
@@ -1008,6 +1035,21 @@ public class Login extends javax.swing.JPanel {
                 jButton62MouseClicked(evt);
             }
         });
+        jButton62.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton62ActionPerformed(evt);
+            }
+        });
+
+        jLabel70.setText("NIF");
+
+        jTextField21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField21ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Data de Nascimento DD/MM/YYYY");
 
         javax.swing.GroupLayout CriarContaLayout = new javax.swing.GroupLayout(CriarConta);
         CriarConta.setLayout(CriarContaLayout);
@@ -1015,31 +1057,41 @@ public class Login extends javax.swing.JPanel {
             CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CriarContaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton62)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton61)
-                .addContainerGap())
-            .addGroup(CriarContaLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CriarContaLayout.createSequentialGroup()
+                        .addComponent(jButton62)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton61)
+                        .addContainerGap())
                     .addGroup(CriarContaLayout.createSequentialGroup()
                         .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel70)
                             .addComponent(jLabel15)
-                            .addComponent(jLabel16))
-                        .addGap(18, 18, 18)
-                        .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(jTextField15)))
-                    .addGroup(CriarContaLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPasswordField1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18))
+                        .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CriarContaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPasswordField1)
+                                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(CriarContaLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField14)
+                                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(61, 61, 61))
+                            .addGroup(CriarContaLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         CriarContaLayout.setVerticalGroup(
             CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CriarContaLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(20, 20, 20)
                 .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1047,11 +1099,19 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel70)
+                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(CriarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton62)
                     .addComponent(jButton61))
@@ -1326,13 +1386,12 @@ public class Login extends javax.swing.JPanel {
 
         jLabel40.setText("Numero de emergencia");
 
-        jRadioButton4.setText("M");
-
-        jRadioButton5.setText("F");
-
-        jRadioButton6.setText("Outro");
-
         jButton75.setText("Adicionar");
+        jButton75.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton75MouseClicked(evt);
+            }
+        });
 
         jButton76.setText("Voltar");
         jButton76.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1341,58 +1400,67 @@ public class Login extends javax.swing.JPanel {
             }
         });
 
+        jLabel19.setText("Data de Nascimento DD/MM/YYYY");
+
+        jLabel20.setText("Email");
+
         javax.swing.GroupLayout AdicionarTaxistaLayout = new javax.swing.GroupLayout(AdicionarTaxista);
         AdicionarTaxista.setLayout(AdicionarTaxistaLayout);
         AdicionarTaxistaLayout.setHorizontalGroup(
             AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                            .addComponent(jLabel34)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField32))
-                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                            .addComponent(jLabel33)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField31, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)))
-                    .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                        .addComponent(jLabel36)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                        .addComponent(jLabel35)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                        .addComponent(jLabel37)
-                        .addGap(30, 30, 30)
-                        .addComponent(jRadioButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton6))
-                    .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
-                        .addComponent(jLabel40)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AdicionarTaxistaLayout.createSequentialGroup()
-                            .addComponent(jLabel39)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField36))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AdicionarTaxistaLayout.createSequentialGroup()
-                            .addComponent(jLabel38)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdicionarTaxistaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton76)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton75)
                 .addContainerGap())
+            .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addComponent(jLabel33)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField31)
+                            .addGap(194, 194, 194))
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addComponent(jLabel35)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AdicionarTaxistaLayout.createSequentialGroup()
+                                .addComponent(jLabel39)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField36))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AdicionarTaxistaLayout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addComponent(jLabel19)
+                            .addGap(28, 28, 28)
+                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addComponent(jLabel40)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel36)
+                                .addComponent(jLabel37))
+                            .addGap(18, 18, 18)
+                            .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                        .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel20))
+                        .addGap(18, 18, 18)
+                        .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField18, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(jTextField32))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         AdicionarTaxistaLayout.setVerticalGroup(
             AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1405,21 +1473,23 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
                     .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
                     .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6))
-                .addGap(18, 18, 18)
+                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
                     .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1431,7 +1501,11 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel40)
                     .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton75)
                     .addComponent(jButton76))
@@ -1896,7 +1970,7 @@ public class Login extends javax.swing.JPanel {
                                 .addComponent(AdicionarTaxi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(EditarTaxista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 265, Short.MAX_VALUE))
+                .addGap(0, 262, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1907,56 +1981,49 @@ public class Login extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String username = jTextField1.getText();
         String password = jTextField2.getText();
-        
-
-        
-        /*if(!username.equals("") && !password.equals("")){
+        if(!username.equals("") && !password.equals("")){
            Admin admin;
            admin = AdminBLL.read(username);
-           
-           Cliente cliente;
-           cliente = ClienteBLL.read(username);
-           
-           Taxista taxista;
-           taxista = TaxistaBLL.read(username);
-           
-           if(!admin.equals(new Admin())){
+           if(admin.getAdminID()!=0){
                 System.out.println("Admin");
-                System.out.println(admin.getUsername());
-                if(admin.getPassword().equals(password)){
-                */    
-                    
+                if(admin.getPassword().equals(password)){  
                     Login.setVisible(false);
-                    MenuCliente.setVisible(true);
-                    
-              /*      
+                    MenuAdmin.setVisible(true);
+                    this.admin=admin;
+                    modo="admin";
+                    resetText();
                 }
-            }
-          
-           else if(!cliente.equals(new Cliente())){
-                   
-                    
-                 if(cliente.getPassword().equals(password)){
-                     
-                   
            }
+           else{ 
+               Cliente cliente= ClienteBLL.read(username);
+               if(cliente.getCliente_id()!=0){
+                    System.out.println("cliente");
+                    if(cliente.getPassword().equals(password)){
+                        Login.setVisible(false);
+                        MenuCliente.setVisible(true);
+                        this.cliente=cliente;
+                        modo="cliente";
+                        resetText();
+                    }
+                }else{
+                    Taxista taxista;
+                    taxista = TaxistaBLL.read("taxista");
+                    if(taxista.getTaxistaID()!=0){
+                        System.out.println("taxista");
+                        if(password.equals(taxista.getPassword())){  
+                            Login.setVisible(false);
+                            MenuTaxista.setVisible(true);
+                            this.taxista=taxista;
+                            modo="taxista";
+                            resetText();
+                        }
+                    }
+                }
            }
            
-           else if(!taxista.equals(new Taxista()))
-               if(taxista.getPassword().equals(password)){
-                   
-                    
-        }
-           else{
-               System.out.println("ola");
-           }
            
-           
-            
-        } else{
-               System.out.println("ola2");
-           }
-        */
+        } 
+        
         
         
     }//GEN-LAST:event_jButton1MouseClicked
@@ -1981,10 +2048,6 @@ public class Login extends javax.swing.JPanel {
         PedirTaxi.setVisible(true);
     }//GEN-LAST:event_jButton7MouseClicked
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton40ActionPerformed
@@ -1992,11 +2055,6 @@ public class Login extends javax.swing.JPanel {
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton42ActionPerformed
-
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-                    Login.setVisible(false);
-                    MenuAdmin.setVisible(true);        
-    }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton62MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton62MouseClicked
        
@@ -2012,11 +2070,6 @@ public class Login extends javax.swing.JPanel {
         MenuCliente.setVisible(false);
         Login.setVisible(true);        
     }//GEN-LAST:event_jButton4MouseClicked
-
-    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
-        Login.setVisible(false);
-        MenuTaxista.setVisible(true);          
-    }//GEN-LAST:event_jButton9MouseClicked
 
     private void jTextField49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField49ActionPerformed
         
@@ -2125,8 +2178,29 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton59MouseClicked
 
     private void jButton61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton61MouseClicked
-        CriarConta.setVisible(false);
-        MenuCliente.setVisible(true);        // TODO add your handling code here:
+        Cliente novoCliente= new Cliente();
+        if(!jTextField14.getText().equals("") && !jTextField15.getText().equals("") && !jTextField16.getText().equals("") && !jTextField21.getText().equals("") && !jPasswordField1.getText().equals("")){
+            if(!ClienteBLL.checkUsername(jTextField14.getText())){
+                novoCliente.setUsername(jTextField14.getText());
+                novoCliente.setPassword(jPasswordField1.getText());
+                novoCliente.setEmail(jTextField15.getText());
+                novoCliente.setNIF(Integer.parseInt(jTextField21.getText()));
+                String[] temp = jTextField16.getText().split("/");
+                if(temp.length == 3){
+                    Date data = new Date();
+                    data.setDate(Integer.parseInt(temp[0]));
+                    data.setMonth(Integer.parseInt(temp[1])-1);
+                    data.setYear(Integer.parseInt(temp[2]));
+                    novoCliente.setData_nascimento(data);
+                    ClienteBLL.create(novoCliente);
+                    CriarConta.setVisible(false);
+                    resetText();
+                    Login.setVisible(true);
+                    
+                }
+                
+            }
+        }
     }//GEN-LAST:event_jButton61MouseClicked
 
     private void jButton70MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton70MouseClicked
@@ -2183,6 +2257,43 @@ public class Login extends javax.swing.JPanel {
         EditarTaxista.setVisible(false);
        VerTaxistas.setVisible(true);
     }//GEN-LAST:event_jButton48MouseClicked
+
+    private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField21ActionPerformed
+
+    private void jButton62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton62ActionPerformed
+        // TODO add your handling code here:
+        CriarConta.setVisible(false);
+        Login.setVisible(true);
+    }//GEN-LAST:event_jButton62ActionPerformed
+
+    private void jButton75MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton75MouseClicked
+        Taxista taxista = new Taxista();
+        if(!jTextField19.getText().equals("") &&!jTextField31.getText().equals("") && !jTextField32.getText().equals("") && !jTextField33.getText().equals("") && !jTextField34.getText().equals("") && !jTextField35.getText().equals("") && !jTextField36.getText().equals("") && !jTextField37.getText().equals("") && !jTextField17.getText().equals("") && !jTextField18.getText().equals("")){
+            taxista.setUsername(jTextField31.getText());
+            taxista.setPassword(jTextField32.getText());
+            taxista.setEmail(jTextField18.getText());
+            taxista.setCertificado(jTextField33.getText());
+            taxista.setMorada(jTextField34.getText());
+            taxista.setNIF(Integer.parseInt(jTextField35.getText()));
+            taxista.setTelefone(Integer.parseInt(jTextField36.getText()));
+            taxista.setNumeroemergencia(Integer.parseInt(jTextField37.getText()));
+            taxista.setSexo(jTextField19.getText());
+            String[] temp = jTextField17.getText().split("/");
+            if(temp.length == 3){
+                Date data = new Date();
+                data.setDate(Integer.parseInt(temp[0]));
+                data.setMonth(Integer.parseInt(temp[1])-1);
+                data.setYear(Integer.parseInt(temp[2]));
+                taxista.setDatanascimento(data);
+                TaxistaBLL.create(taxista);
+                AdicionarTaxista.setVisible(false);
+                resetText();
+                VerTaxistas.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jButton75MouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2200,9 +2311,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JPanel MenuTaxista;
     private javax.swing.JPanel PedirTaxi;
     private javax.swing.JPanel RegistarViagem;
-    private javax.swing.JPanel Reservar;
-    private javax.swing.JPanel Reservar1;
-    private javax.swing.JPanel Reservar2;
     private javax.swing.JPanel VerFerias;
     private javax.swing.JPanel VerReservas;
     private javax.swing.JPanel VerTaxis;
@@ -2214,32 +2322,8 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
-    private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
-    private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
@@ -2267,8 +2351,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton jButton60;
     private javax.swing.JButton jButton61;
     private javax.swing.JButton jButton62;
-    private javax.swing.JButton jButton63;
-    private javax.swing.JButton jButton64;
     private javax.swing.JButton jButton65;
     private javax.swing.JButton jButton66;
     private javax.swing.JButton jButton67;
@@ -2281,16 +2363,10 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton jButton74;
     private javax.swing.JButton jButton75;
     private javax.swing.JButton jButton76;
-    private javax.swing.JButton jButton77;
-    private javax.swing.JButton jButton78;
-    private javax.swing.JButton jButton79;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton80;
     private javax.swing.JButton jButton81;
     private javax.swing.JButton jButton82;
     private javax.swing.JButton jButton83;
     private javax.swing.JButton jButton84;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2304,8 +2380,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -2326,17 +2400,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -2358,20 +2422,14 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
@@ -2397,7 +2455,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
@@ -2414,17 +2472,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField40;
-    private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField42;
-    private javax.swing.JTextField jTextField43;
-    private javax.swing.JTextField jTextField44;
-    private javax.swing.JTextField jTextField45;
-    private javax.swing.JTextField jTextField46;
-    private javax.swing.JTextField jTextField47;
     private javax.swing.JTextField jTextField48;
     private javax.swing.JTextField jTextField49;
     private javax.swing.JTextField jTextField5;

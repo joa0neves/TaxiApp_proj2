@@ -18,7 +18,7 @@ import projeto.Taxi;
  * @author Joao
  */
 public class TaxiBLL {
-    public void create(Taxi taxi){
+    public static void create(Taxi taxi){
         String sql="insert into TAXI (ALVARA,MODELO,MARCA,MATRICULA) values(?,?,?,?);";
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
@@ -39,7 +39,7 @@ public class TaxiBLL {
         }
     }
     
-    public void delete(int taxi_ID){
+    public static void delete(int taxi_ID){
         String sql="delete from TAXI where TAXI_ID=?";
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
@@ -57,7 +57,7 @@ public class TaxiBLL {
         }
     }
     
-    public void update(Taxi taxi){
+    public static void update(Taxi taxi){
         String sql="update TAXI set ALVARA=?,MODELO=?,MARCA=?,MATRICULA? where TAXI_ID=?;";
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
