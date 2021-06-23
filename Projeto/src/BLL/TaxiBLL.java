@@ -8,9 +8,14 @@ package BLL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import projeto.Ferias;
 import projeto.Taxi;
 
 /**
@@ -19,7 +24,7 @@ import projeto.Taxi;
  */
 public class TaxiBLL {
     public static void create(Taxi taxi){
-        String sql="insert into TAXI (ALVARA,MODELO,MARCA,MATRICULA) values(?,?,?,?);";
+        String sql="insert into TAXI (ALVARÁ,MODELO,MARCA,MATRICULA) values(?,?,?,?)";
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
@@ -58,7 +63,7 @@ public class TaxiBLL {
     }
     
     public static void update(Taxi taxi){
-        String sql="update TAXI set ALVARA=?,MODELO=?,MARCA=?,MATRICULA? where TAXI_ID=?;";
+        String sql="update TAXI set ALVARA=?,MODELO=?,MARCA=?,MATRICULA? where TAXI_ID=?";
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
@@ -76,5 +81,31 @@ public class TaxiBLL {
         }catch (Exception e) {
             System.out.println(e);
         }
+    }
+    
+    public static List<Taxi> readAll(){
+        List<Taxi> lista = new ArrayList<>();
+        String sql = "select * from TAXI";
+        Taxi temp;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver"); 
+            Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                temp=new Taxi();
+                temp.setTaxi_ID(rs.getInt("TAXI_ID"));
+                temp.setAlvara(rs.getString("ALVARÁ"));
+                temp.setMarca(rs.getString("MARCA"));
+                temp.setModelo(rs.getString("MODELO"));
+                temp.setMatricula(rs.getString("MATRICULA"));
+                lista.add(temp);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return lista;
     }
 }

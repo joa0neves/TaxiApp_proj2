@@ -9,6 +9,7 @@ import BLL.*;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import projeto.*;
 
 /**
@@ -21,6 +22,9 @@ public class Login extends javax.swing.JPanel {
     Cliente cliente;
     Taxista taxista;
     List<Taxista> taxistas;
+    List<Ferias> ferias;
+    List<Taxi> taxis;
+    List<Viagem> viagems;
     
     
     public Login() {
@@ -487,6 +491,11 @@ public class Login extends javax.swing.JPanel {
         });
 
         jButton44.setText("Sair");
+        jButton44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton44MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuTaxistaLayout = new javax.swing.GroupLayout(MenuTaxista);
         MenuTaxista.setLayout(MenuTaxistaLayout);
@@ -1308,6 +1317,11 @@ public class Login extends javax.swing.JPanel {
         jLabel32.setText("Alvara");
 
         jButton73.setText("Adicionar");
+        jButton73.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton73MouseClicked(evt);
+            }
+        });
 
         jButton74.setText("Cancelar");
         jButton74.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1432,15 +1446,14 @@ public class Login extends javax.swing.JPanel {
                             .addComponent(jLabel35)
                             .addGap(18, 18, 18)
                             .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(AdicionarTaxistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AdicionarTaxistaLayout.createSequentialGroup()
-                                .addComponent(jLabel39)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField36))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AdicionarTaxistaLayout.createSequentialGroup()
-                                .addComponent(jLabel38)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addComponent(jLabel39)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField36))
+                        .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
+                            .addComponent(jLabel38)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(AdicionarTaxistaLayout.createSequentialGroup()
                             .addComponent(jLabel19)
                             .addGap(28, 28, 28)
@@ -1616,23 +1629,15 @@ public class Login extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "ID do Taxista", "Email", "Certificado"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton81.setText("Adicionar");
@@ -2081,7 +2086,16 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField49ActionPerformed
 
     private void jButton40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton40MouseClicked
-         
+        this.viagems=ViagemBLL.readAllEspera();
+        String[] colunas={"ID","Local de Partida","Destino"};
+        String[][] data=new String[this.viagems.size()][3];
+        for(int i=0;i<this.viagems.size();i++){
+            data[i][0] = String.valueOf(this.viagems.get(i).getViagemID());
+            data[i][1] = this.viagems.get(i).getLocalpartida();
+            data[i][2] = this.viagems.get(i).getLocalchegado();
+        }
+        DefaultTableModel model =new DefaultTableModel(data, colunas);
+        jTable5.setModel(model);
         MenuTaxista.setVisible(false);  
         VerViagens.setVisible(true);
     }//GEN-LAST:event_jButton40MouseClicked
@@ -2102,6 +2116,18 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton43MouseClicked
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        ferias=FeriasBLL.readAll();
+        String[] colunas={"ID","Taxista","Inicio","Fim","Estado"};
+        String[][] data=new String[this.ferias.size()][5];
+        for(int i=0;i<this.ferias.size();i++){
+            data[i][0] = String.valueOf(this.ferias.get(i).getPedidoID());
+            data[i][1] = String.valueOf(this.ferias.get(i).getTaxistaID());
+            data[i][2] = this.ferias.get(i).getInicio().toString();
+            data[i][3] = this.ferias.get(i).getFim().toString();
+            data[i][4] = this.ferias.get(i).getEstado();
+        }
+        DefaultTableModel model =new DefaultTableModel(data, colunas);
+        jTable3.setModel(model);
         MenuAdmin.setVisible(false);  
         VerFerias.setVisible(true);        
     }//GEN-LAST:event_jButton10MouseClicked
@@ -2112,12 +2138,23 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton11MouseClicked
 
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        this.taxis=TaxiBLL.readAll();
+        String[] colunas={"ID","Marca","Modelo","Matricula","Alvará"};
+        String[][] data=new String[this.taxis.size()][5];
+        for(int i=0;i<this.taxis.size();i++){
+            data[i][0] = String.valueOf(this.taxis.get(i).getTaxi_ID());
+            data[i][1] = this.taxis.get(i).getMarca();
+            data[i][2] = this.taxis.get(i).getModelo();
+            data[i][3] = this.taxis.get(i).getMatricula();
+            data[i][4] = this.taxis.get(i).getAlvara();
+        }
+        DefaultTableModel model =new DefaultTableModel(data, colunas);
+        jTable2.setModel(model);
         MenuAdmin.setVisible(false);  
         VerTaxis.setVisible(true);        
     }//GEN-LAST:event_jButton12MouseClicked
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-        MenuAdmin.setVisible(false);  
         this.taxistas=TaxistaBLL.readAll();
         String[] colunas={"ID","USERNAME","CERTIFICADO"};
         String[][] data=new String[this.taxistas.size()][3];
@@ -2125,11 +2162,16 @@ public class Login extends javax.swing.JPanel {
         for(int i=0;i<this.taxistas.size();i++){
             System.out.println("taxistas");
             data[i][0]=String.valueOf(this.taxistas.get(i).getTaxistaID());
+            System.out.println(String.valueOf(this.taxistas.get(i).getTaxistaID()));
             data[i][1]=this.taxistas.get(i).getUsername();
-            data[i][2]=this.taxistas.get(i).getUsername();
+            System.out.println(this.taxistas.get(i).getUsername());
+            data[i][2]=this.taxistas.get(i).getCertificado();
+            System.out.println(this.taxistas.get(i).getCertificado());
         }
-        jTable1=new JTable(data,colunas);
+        DefaultTableModel model =new DefaultTableModel(data, colunas);
+        jTable1.setModel(model);
         VerTaxistas.setVisible(true);
+        MenuAdmin.setVisible(false);
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
@@ -2226,8 +2268,32 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton70MouseClicked
 
     private void jButton69MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton69MouseClicked
-        FazerPedido.setVisible(false);
-        MenuTaxista.setVisible(true);// TODO add your handling code here:
+        Ferias ferias = new Ferias();
+        if(!jTextField23.getText().equals("") && !jTextField24.getText().equals("")){
+            ferias = new Ferias();
+            String[] temp = jTextField23.getText().split("/");
+            if(temp.length == 3){
+                Date data = new Date();
+                data.setDate(Integer.parseInt(temp[0]));
+                data.setMonth(Integer.parseInt(temp[1])-1);
+                data.setYear(Integer.parseInt(temp[2]));
+                ferias.setInicio(data);
+            }
+            temp = jTextField24.getText().split("/");
+            if(temp.length == 3){
+                Date data = new Date();
+                data.setDate(Integer.parseInt(temp[0]));
+                data.setMonth(Integer.parseInt(temp[1])-1);
+                data.setYear(Integer.parseInt(temp[2]));
+                ferias.setFim(data);
+            }
+            ferias.setEstado("pendente");
+            ferias.setTaxistaID(this.taxista.getTaxistaID());
+            FeriasBLL.create(ferias);
+            resetText();
+            FazerPedido.setVisible(false);
+            MenuTaxista.setVisible(true);
+        }
     }//GEN-LAST:event_jButton69MouseClicked
 
     private void jButton67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton67MouseClicked
@@ -2312,7 +2378,7 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton75MouseClicked
 
     private void jButton71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton71MouseClicked
-        
+
         if(!jTextField25.getText().equals("") && !jTextField26.getText().equals("")){
             String partida = jTextField25.getText();
             String destino = jTextField26.getText();
@@ -2326,6 +2392,25 @@ public class Login extends javax.swing.JPanel {
             MenuCliente.setVisible(true);
         }
     }//GEN-LAST:event_jButton71MouseClicked
+
+    private void jButton73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton73MouseClicked
+        Taxi taxi;
+        if(!jTextField27.getText().equals("") && !jTextField28.getText().equals("") && !jTextField29.getText().equals("") && !jTextField30.getText().equals("")){
+            taxi=new Taxi();
+            taxi.setMarca(jTextField27.getText());
+            taxi.setModelo(jTextField28.getText());
+            taxi.setMatricula(jTextField29.getText());
+            taxi.setAlvara(jTextField30.getText());
+            TaxiBLL.create(taxi);
+            AdicionarTaxi.setVisible(false);
+            VerTaxis.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton73MouseClicked
+
+    private void jButton44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton44MouseClicked
+        MenuTaxista.setVisible(false);
+        Login.setVisible(true);
+    }//GEN-LAST:event_jButton44MouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

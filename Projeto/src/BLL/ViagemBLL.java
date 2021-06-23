@@ -61,7 +61,7 @@ public class ViagemBLL {
             long millis=System.currentTimeMillis();  
             java.sql.Date date=new java.sql.Date(millis);  
             stmt.setDate(2,date);
-            stmt.setString(3,"decorrer");
+            stmt.setString(3,"espera");
             stmt.setString(4,viagem.getLocalpartida());
             stmt.setString(5,viagem.getLocalchegado());
             stmt.executeUpdate();
@@ -154,30 +154,22 @@ public class ViagemBLL {
         return lista;
     }
     
-    public static List<Viagem> readByTaxista(int id){
+    public static List<Viagem> readAllEspera(){
         List<Viagem> lista = new ArrayList<>();
-        String sql = "select * from RESERVA where TAXISTA_ID=?";
+        String sql = "select * from VIAGEM where ESTADO=?";
         Viagem temp;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver"); 
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");  
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setString(1, "espera");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 temp=new Viagem();
                 temp.setViagemID(rs.getInt("VIAGEM_ID"));
                 temp.setClienteID(rs.getInt("CLIENTE_ID"));
-                temp.setTaxistaID(rs.getInt("TAXISTA_ID"));
-                temp.setTaxiID(rs.getInt("TAXI_ID"));
-                temp.setInicio(new Date(rs.getTime("INICIO").getTime()));
-                temp.setFim(new Date(rs.getTime("FIM").getTime()));
                 temp.setLocalpartida(rs.getString("PARTIDA"));
                 temp.setLocalchegado(rs.getString("CHEGADA"));
-                temp.setCusto(rs.getFloat("CUSTO"));
-                temp.setDistancia(rs.getDouble("DISTANCIA"));
-                temp.setFormapagamento(rs.getString("FORMA_PAGAMENTO"));
-                temp.setEstado(rs.getString("ESTADO"));
                 lista.add(temp);
             }
             con.close();
