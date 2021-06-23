@@ -185,13 +185,11 @@ public class Login extends javax.swing.JPanel {
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jLabel13 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         CriarConta = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -898,15 +896,12 @@ public class Login extends javax.swing.JPanel {
 
         jLabel12.setText("Forma de Pagamento");
 
-        jRadioButton1.setText("Dinheiro");
-
-        jRadioButton2.setText("Cartão");
-
-        jRadioButton3.setText("MbWay");
-
         jLabel13.setText(":");
 
         jLabel14.setText(":");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MbWay", "Dinheiro", "Cartão" }));
+        jComboBox1.setToolTipText("");
 
         javax.swing.GroupLayout RegistarViagemLayout = new javax.swing.GroupLayout(RegistarViagem);
         RegistarViagem.setLayout(RegistarViagemLayout);
@@ -936,29 +931,28 @@ public class Login extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton59))
                     .addGroup(RegistarViagemLayout.createSequentialGroup()
-                        .addGroup(RegistarViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jTextField3)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jTextField4)
-                            .addGroup(RegistarViagemLayout.createSequentialGroup()
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField6)
-                            .addGroup(RegistarViagemLayout.createSequentialGroup()
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9)
-                            .addComponent(jTextField10)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                        .addGroup(RegistarViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RegistarViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField3)
+                                .addComponent(jTextField4)
+                                .addGroup(RegistarViagemLayout.createSequentialGroup()
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel13)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField6)
+                                .addGroup(RegistarViagemLayout.createSequentialGroup()
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel14)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField8)
+                                .addComponent(jTextField9)
+                                .addComponent(jTextField10)
+                                .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1009,12 +1003,8 @@ public class Login extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(RegistarViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jRadioButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(RegistarViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton59)
                     .addComponent(jButton60))
@@ -1960,7 +1950,7 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(RegistarViagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(59, 59, 59)
                         .addComponent(PedirTaxi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(150, 150, 150)
                         .addComponent(AdicionarTaxista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1980,7 +1970,7 @@ public class Login extends javax.swing.JPanel {
                                 .addComponent(AdicionarTaxi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(EditarTaxista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 262, Short.MAX_VALUE))
+                .addGap(0, 260, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2233,6 +2223,42 @@ public class Login extends javax.swing.JPanel {
 
     private void jButton59MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton59MouseClicked
 
+        Viagem viagem;
+        if(!jTextField3.getText().equals("") && !jTextField4.getText().equals("") && !jTextField5.getText().equals("") && !jTextField12.getText().equals("") && !jTextField6.getText().equals("") && !jTextField7.getText().equals("") && !jTextField13.getText().equals("") && !jTextField8.getText().equals("") && !jTextField9.getText().equals("") && !jTextField10.getText().equals("") && !jTextField11.getText().equals("")){
+            viagem=new Viagem();
+            viagem.setViagemID(Integer.parseInt(jTextField3.getText()));
+            viagem.setTaxistaID(this.taxista.getTaxistaID());
+            viagem.setTaxiID(1);
+            String[] temp = jTextField4.getText().split("/");
+            if(temp.length == 3){
+                Date data = new Date();
+                data.setDate(Integer.parseInt(temp[0]));
+                data.setMonth(Integer.parseInt(temp[1])-1);
+                data.setYear(Integer.parseInt(temp[2]));
+                data.setHours(Integer.parseInt(jTextField5.getText()));
+                data.setMinutes(Integer.parseInt(jTextField12.getText()));
+                viagem.setInicio(data);
+                temp = jTextField6.getText().split("/");
+                if(temp.length == 3){
+                    data = new Date();
+                    data.setDate(Integer.parseInt(temp[0]));
+                    data.setMonth(Integer.parseInt(temp[1])-1);
+                    data.setYear(Integer.parseInt(temp[2]));
+                    data.setHours(Integer.parseInt(jTextField7.getText()));
+                    data.setMinutes(Integer.parseInt(jTextField13.getText()));
+                    viagem.setFim(data);
+                    viagem.setLocalpartida(jTextField8.getText());
+                    viagem.setLocalchegado(jTextField9.getText());
+                    viagem.setCusto(Float.parseFloat(jTextField10.getText()));
+                    viagem.setDistancia(Double.valueOf(jTextField10.getText()));
+                    viagem.setFormapagamento(jComboBox1.getItemAt(jComboBox1.getSelectedIndex()));
+                    viagem.setEstado("terminada");
+                    ViagemBLL.update(viagem);
+                    RegistarViagem.setVisible(false);
+                    MenuTaxista.setVisible(true);
+                }
+            }
+        }
     }//GEN-LAST:event_jButton59MouseClicked
 
     private void jButton61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton61MouseClicked
@@ -2484,6 +2510,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton jButton82;
     private javax.swing.JButton jButton83;
     private javax.swing.JButton jButton84;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2544,9 +2571,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;

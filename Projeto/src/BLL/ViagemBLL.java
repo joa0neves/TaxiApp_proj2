@@ -91,24 +91,23 @@ public class ViagemBLL {
         }
     }
     
-    public static void update(int viagemID,int taxiID,int taxistaID,int clienteID,Date inicio,Date fim,float custo,double distancia,String estado,String formapagamento,String localpartida, String localchegado){
-        String sql="update viagem set TAXI_ID=?,TAXISTA_ID=?,CLIENTE_ID=?,INICIO=?,FIM=?,CUSTO=?,DISTANCIA=?,ESTADO=?,FORMA_PAGAMENTO=?,PARTIDA=?,CHEGADA=? where VIAGEM_ID=?";
+    public static void update(Viagem viagem){
+        String sql="update viagem set TAXI_ID=?,TAXISTA_ID=?,INICIO=?,FIM=?,CUSTO=?,DISTANCIA=?,ESTADO=?,FORMA_PAGAMENTO=?,PARTIDA=?,CHEGADA=? where VIAGEM_ID=?";
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");  
             Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","projeto_taxi","12346579");
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, taxiID);
-            stmt.setInt(2, taxistaID);
-            stmt.setInt(3,clienteID);
-            stmt.setDate(4,new java.sql.Date(inicio.getTime()));
-            stmt.setDate(5,new java.sql.Date(fim.getTime()));
-            stmt.setFloat(6, custo);
-            stmt.setFloat(7,Double.valueOf(distancia).floatValue());
-            stmt.setString(8,estado);
-            stmt.setString(9,formapagamento);
-            stmt.setString(10,localpartida);
-            stmt.setString(11,localchegado);
-            stmt.setInt(12,viagemID);
+            stmt.setInt(1, viagem.getTaxiID());
+            stmt.setInt(2, viagem.getTaxistaID());
+            stmt.setDate(3,new java.sql.Date(viagem.getInicio().getTime()));
+            stmt.setDate(4,new java.sql.Date(viagem.getFim().getTime()));
+            stmt.setFloat(5, viagem.getCusto());
+            stmt.setFloat(6,Double.valueOf(viagem.getDistancia()).floatValue());
+            stmt.setString(7,viagem.getEstado());
+            stmt.setString(8,viagem.getFormapagamento());
+            stmt.setString(9,viagem.getLocalpartida());
+            stmt.setString(10,viagem.getLocalchegado());
+            stmt.setInt(11,viagem.getViagemID());
             stmt.executeUpdate();
             
             stmt = con.prepareStatement("COMMIT;");
