@@ -126,8 +126,6 @@ public class Login extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         MenuCliente = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         MenuTaxista = new javax.swing.JPanel();
         jButton40 = new javax.swing.JButton();
@@ -397,20 +395,6 @@ public class Login extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("Fazer Reserva");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-
-        jButton6.setText("Ver Reserva");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
-            }
-        });
-
         jButton7.setText("Pedir Taxi");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -429,11 +413,8 @@ public class Login extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton4))
                     .addGroup(MenuClienteLayout.createSequentialGroup()
-                        .addGroup(MenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7)
-                            .addComponent(jButton3)
-                            .addComponent(jButton6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton7)
+                        .addGap(0, 274, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         MenuClienteLayout.setVerticalGroup(
@@ -441,10 +422,6 @@ public class Login extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuClienteLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
@@ -890,9 +867,9 @@ public class Login extends javax.swing.JPanel {
 
         jLabel9.setText("Destino");
 
-        jLabel10.setText("Custo");
+        jLabel10.setText("Custo (€)");
 
-        jLabel11.setText("Distancia");
+        jLabel11.setText("Distancia (KM)");
 
         jLabel12.setText("Forma de Pagamento");
 
@@ -2032,17 +2009,6 @@ public class Login extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        MenuCliente.setVisible(false);
-        CriarReserva.setVisible(true);
-
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        MenuCliente.setVisible(false);
-        VerReservas.setVisible(true);
-    }//GEN-LAST:event_jButton6MouseClicked
-
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         MenuCliente.setVisible(false);
         PedirTaxi.setVisible(true);
@@ -2466,7 +2432,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
@@ -2490,7 +2455,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton jButton57;
     private javax.swing.JButton jButton58;
     private javax.swing.JButton jButton59;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton60;
     private javax.swing.JButton jButton61;
     private javax.swing.JButton jButton62;
